@@ -34,16 +34,16 @@ inquirer.prompt([
       "Manager"
     ]
   },
-]).then(function() {
+]).then(function(Employee) {
 
-  if (Employee.Role === "Manager"); {
-    getLinkedin();
-  }
-  if (Employee.Role === "Engineer"); {
-    gitHubUser();
-  }
-  if (Employee.Role === "intern"); {
-    getSchool();
+  console.log(Employee.Role)
+
+  if (Employee.Role === "Manager") {
+    getLinkedin()
+  } else if (Employee.Role === "Engineer") {
+    gitHubUser()
+  } else if (Employee.Role === "intern") {
+    getSchool()
   }
     
 function getLinkedin () {
@@ -84,5 +84,7 @@ inquirer.prompt([
   console.log(Engineer)
 
 })
-  }
-})
+}
+  })
+
+
