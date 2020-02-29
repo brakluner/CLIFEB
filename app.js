@@ -55,19 +55,21 @@ inquirer.prompt(questions).then(function(Employee) {
     M.ID = Employee.ID
     M.Email = Employee.Email
     M.Role = Employee.Role
-    getLinkedin(M)
+    getOfficeNum(M)
   
   } else if (Employee.Role === "Engineer") {
-    Employee.ID = Engineer.ID
-    Employee.Email = Engineer.Email
-    Employee.Role = Engineer.Role
-    gitHubUser(Engineer)
+    var E = new Engineer(Employee)
+    E.ID = Employee.ID
+    E.Email = Employee.Email
+    E.Role = Employee.Role
+    gitHubUser(E)
     
-  } else if (Employee.Role === "intern") {
-    Employee.ID = Intern.ID
-    Employee.Email = Intern.Email
-    Employee.Role = Intern.Role
-    getSchool(Intern)
+  } else if (Employee.Role === "Intern") {
+    var I = new Intern(Employee)
+    I.ID = Employee.ID
+    I.Email = Employee.Email
+    I.Role = Employee.Role
+    getSchool(I)
     
   }
 })
@@ -95,23 +97,23 @@ function confirm() {
   })
 } 
 
-function getLinkedin (M) {
+function getOfficeNum (M) {
 inquirer.prompt([
     {
       type: "input",
-      name: "Linkedin",
-      message: "Whats your Linkedin?"
+      name: "officeNum",
+      message: "Whats your office number?"
     },
     
-  ]).then(function(Linkedin) {
-    M.Linkedin = Linkedin
+  ]).then(function(officeNum) {
+    M.officeNum = officeNum
     employees.push(M)
   }).then(confirm)
   
     
   }
 
-function getSchool () {
+function getSchool (I) {
 inquirer.prompt([
     {
       type: "input",
@@ -119,19 +121,25 @@ inquirer.prompt([
       message: "Whats your scool?"
     },
     
-  ]).then(confirm);
+  ]).then(function(school) {
+    I.school = school
+    employees.push(I)
+  }).then(confirm)
   
   
   }
     
-function gitHubUser () {
+function gitHubUser (E) {
 inquirer.prompt([
     {
       type: "input",
       name: "Github",
       message: "What is your Github?"
     },
-]).then(confirm);
+]).then(function(Github) {
+  E.Github = Github
+  employees.push(E)
+}).then(confirm)
 
 
 } 
