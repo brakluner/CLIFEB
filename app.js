@@ -86,7 +86,6 @@ function confirm() {
       ]
     }
   ]).then(function(answer) { 
-    console.log(answer)
   if (answer.next === "Yes") {
     init()
   } else {
@@ -139,6 +138,7 @@ inquirer.prompt([
 ]).then(function(Github) {
   E.Github = Github
   employees.push(E)
+  console.log(employees)
 }).then(confirm)
 
 
